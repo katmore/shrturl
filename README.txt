@@ -21,8 +21,10 @@ Installation:
 	* extract/copy this project somewhere
 	* have a mysql database ready with access for a user/pass
 	* export a predefined list of 'codes' to a table named 'url'
-		* see url_code.sql for schema and example list of codes
+		* see url_table.sql for schema
 	* edit shrt-config.php appropriately
+	* run url_codes.sql OR
+	* optionally run 'make_codes.php' to add possible codes to your database
 	
 Usage:
 	* Display full (target) URL
@@ -33,6 +35,8 @@ Usage:
 			
 Notes:
 I created this project because I was not satisfied with the way short URLs were
-generated in existing shortening scripts. 
+generated in existing shortening scripts.
+
+
 
 	
