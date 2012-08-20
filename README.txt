@@ -29,8 +29,8 @@ Usage:
 			* add a get var named 'POST' to the query string to will also invoke 'POST'
 			
 Notes:
-I created this because I was not satisfied with the way codes were provided to
-me in existing URL shortening scripts. I did not like code's created by
+I created this project because I was not satisfied with the way short URLs were
+generated in existing shortening scripts. I did not like code's created by
 algorithms because of the following two problems. One, they are typically
 sequential: they reveal how many target URLs your system is currently storing.
 Two, codes can end up being comprised of  weird, confusing, or unwanted
