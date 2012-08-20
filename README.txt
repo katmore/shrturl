@@ -1,5 +1,10 @@
 shorturl is a 'URL shortener' service written in PHP
-	* It does NOT use an algorithm to convert an ID to the short url code
+
+License:
+	* 2-clause "Simplified BSD License" or "FreeBSD License" - see LICENSE.txt
+
+Description:
+	* It DOES NOT use an algorithm to convert an ID to the short url code
 	* It relies on a predifined list of codes existing in a database.
 	* On a shorten request, it associates one of these codes persistently with the target url.
 	* It uses MySQL innoDB engine for transaction support.
