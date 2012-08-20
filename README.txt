@@ -19,6 +19,7 @@ Installation:
 	
 Usage:
 	* Display full (target) URL
-		* http://example.com/shrt.php?code=abc
+		* GET REQUEST: http://example.com/shrt.php?code=abc
 	* Shorten URL
-		* http://example.com/shrt.php?target=http://example.com/my_really_long_uri
+		* POST REQUEST: http://example.com/shrt.php?target=http://example.com/my_really_long_uri
+			* optionally, add a get var named 'POST' to your query string
