@@ -37,6 +37,12 @@ REST API usage:
 	* Change Target URL
 		* POST REQUEST: http://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
 		* adding a query var named 'POST' to the query string to will also invoke 'POST'
+	
+	* Shorten Multiple URLs
+		* POST REQUEST: http://example.com/shrt.php?request={JSON document}
+		* where 'target' is a valid JSON document with the following structure:
+		* {shrt:['http://target_url_1','http://target_url_2','http://etc...']}
+		
 
 Examples:
 see the "examples" folder included in this project
