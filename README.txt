@@ -1,8 +1,7 @@
 shrturl is a RESTful 'URL shortener' service written in PHP
 
-Social:
-	* github.com/katmore/shrturl
-	* shrturl@katmore.com
+Latest Version:
+	* http://github.com/katmore/shrturl
 
 Documentation:
 	* http://github.com/katmore/shrturl/wiki
@@ -21,7 +20,7 @@ Installation:
 	* extract/copy this project somewhere
 	* have a mysql database ready with access for a user/pass
 	* export a predefined list of 'codes' to a table named 'url'
-		* see url_table.sql for schema
+	* see url_table.sql for schema
 	* edit shrt-config.php appropriately
 	* run url_codes.sql OR
 	* optionally run 'make_codes.php' to add possible codes to your database
@@ -29,13 +28,22 @@ Installation:
 Usage:
 	* Display full (target) URL
 		* GET REQUEST: http://example.com/shrt.php?code=abc
+		* where 'abc' is the code returned by "Shorten URL" request
+		
 	* Shorten URL
 		* POST REQUEST: http://example.com/shrt.php?target=http://my_really_long_uri
-			* add a get var named 'POST' to the query string to will also invoke 'POST'
-			
+		* adding a query var named 'POST' to the query string to will also invoke 'POST'
+		
+	* Change Target URL
+		* POST REQUEST: http://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
+		* adding a query var named 'POST' to the query string to will also invoke 'POST'
+
+Examples:
+	see folder "examples" in this project
+
 Notes:
-I created this project because I was not satisfied with the way short URLs were
-generated in existing shortening scripts.
+	I created this project because I was not satisfied with the way short URLs were
+generated in existing shortening scripts. Learn more at http://github.com/katmore/shrturl/wiki
 
 
 
