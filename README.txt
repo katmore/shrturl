@@ -25,7 +25,7 @@ Installation:
 	* run url_codes.sql OR
 	* optionally run 'make_codes.php' to add possible codes to your database
 	
-Usage:
+REST API usage:
 	* Display full (target) URL
 		* GET REQUEST: http://example.com/shrt.php?code=abc
 		* where 'abc' is the code returned by "Shorten URL" request
@@ -39,11 +39,11 @@ Usage:
 		* adding a query var named 'POST' to the query string to will also invoke 'POST'
 
 Examples:
-	see folder "examples" in this project
+see the "examples" folder included in this project
 
 Notes:
-	I created this project because I was not satisfied with the way short URLs were
-generated in existing shortening scripts. Learn more at http://github.com/katmore/shrturl/wiki
+The goal of this project is to make a web service that behaves similarly to enterprise level URL shortening services (such as bit.ly).
+Learn more at http://github.com/katmore/shrturl/wiki
 
 
 
