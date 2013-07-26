@@ -23,7 +23,7 @@ Installation:
 	* see url_table.sql for schema
 	* edit shrt-config.php appropriately
 	* run url_codes.sql OR
-	* optionally run 'make_codes.php' to add possible codes to your database
+	* optionally run 'make_codes.php' to add possible codes to your database (takes much longer)
 	
 REST API usage:
 	* Display full (target) URL
