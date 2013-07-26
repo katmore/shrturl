@@ -42,7 +42,7 @@ Examples:
 see the "examples" folder included in this project
 
 Notes:
-The goal of this project is to make a web service that behaves similarly to enterprise level URL shortening services (such as bit.ly).
+The goal of this project is to make a web service that behaves similar to enterprise level URL shortening services (such as bit.ly).
 Learn more at http://github.com/katmore/shrturl/wiki
 
 
