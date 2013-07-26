@@ -39,9 +39,9 @@ REST API usage:
 		* adding a query var named 'POST' to the query string to will also invoke 'POST'
 	
 	* Shorten Multiple URLs
-		* POST REQUEST: http://example.com/shrt.php?request={JSON document}
+		* POST REQUEST: http://example.com/shrt.php?request={JSON_document}
 		* where 'target' is a valid JSON document with the following structure:
-		* {shrt:['http://target_url_1','http://target_url_2','http://etc']}
+		* {"shrt":{"target":['http://target_url_1','http://target_url_2','http://etc']}}
 		* adding a query var named 'POST' to the query string to will also invoke 'POST'
 		
 
