@@ -73,7 +73,7 @@ Practical Implementation Hints:
 			* http://examp.le/abc will work now
 				where 'abc' is the short code provided by previous call to short API
 				
-		2) on the API FQD, just use as normal (as described in above doc)
+		2) on the API FQD, just use as described in usage section
 		
 
 
