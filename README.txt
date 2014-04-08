@@ -18,7 +18,7 @@ Description:
 
 Definitions:
 	* 'code' or 'short code': the unique portion (token) contained in a short URL
-	that serves as reference to full URL. The jibberish looking sequence of alpha numeric
+	that serves as reference to full URL. The typically jibberish looking sequence of alpha numeric
 	characters used in most URL shorteners.
 
 Installation:
