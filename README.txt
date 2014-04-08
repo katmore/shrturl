@@ -68,7 +68,7 @@ Learn more at http://github.com/katmore/shrturl/wiki
 Practical Implementation Hints:
 	It is recommended (but not required) to use 2 different FQDs (fully qualified domains) for this service.
 		1) FQD for 'end use' the short code, such as: 
-			http://examp.le
+			http://rlysh.rt
 		2) FQD for API calls to short code service, such as:
 			https://shrturl.example.com
 	For Example:
@@ -79,7 +79,7 @@ Practical Implementation Hints:
 			* additionally, configure your HTTP server with the equivilent of the following .htaccess:
 				RewriteEngine on
 				RewriteRule ^([^/\.]+)/?$ /shrt.php?code=$0 [L]
-			* http://examp.le/abc will work now
+			* http://rlysh.rt/abc will work now
 				where 'abc' is the short code provided by previous call to short API
 				
 		2) on the API FQD use as described in usage section
