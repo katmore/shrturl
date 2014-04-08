@@ -70,7 +70,7 @@ Practical Implementation Hints:
 			* additionally, configure your HTTP server with the equivilent of the following .htaccess:
 				RewriteEngine on
 				RewriteRule ^([^/\.]+)/?$ /shrt.php?code=$0 [L]
-			* now http://examp.le/abc will work to redirect to target URL
+			* http://examp.le/abc will work now
 				where 'abc' is the short code provided by previous call to short API
 				
 		2) on the API FQD, just use as normal (as described in above doc)
