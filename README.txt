@@ -39,6 +39,8 @@ REST API usage:
 	* Shorten URL
 		* POST REQUEST: http://example.com/shrt.php?target=http://my_really_long_uri
 		* adding a query var named 'POST' to the query string to will also invoke 'POST'
+		* add a query var url_base if you want to display a short url with a base URL other than
+			what is configured in the 'default' section of shrt-config.php
 		
 	* Change Target URL
 		* POST REQUEST: http://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
@@ -67,6 +69,8 @@ Practical Implementation Hints:
 	For Example:
 		1) on the 'end use' FQD
 			* install/configure project as described in installation section of this document
+			* configure a url_base additional to the default
+				* see the section in shrt-config-example.php
 			* additionally, configure your HTTP server with the equivilent of the following .htaccess:
 				RewriteEngine on
 				RewriteRule ^([^/\.]+)/?$ /shrt.php?code=$0 [L]
@@ -74,6 +78,11 @@ Practical Implementation Hints:
 				where 'abc' is the short code provided by previous call to short API
 				
 		2) on the API FQD use as described in usage section
+			* in API requets to obtain a short code ensure that:
+				provide a url_base parameter in query that corresponds to the 'end use' FQD
+				that is set in your shrt-config-example.php
+			* for example:
+				
 		
 
 
