@@ -58,6 +58,24 @@ Notes:
 The goal of this project is to make a web service that behaves similar to enterprise level URL shortening services (such as bit.ly).
 Learn more at http://github.com/katmore/shrturl/wiki
 
+Practical Implementation Hints:
+	It is recommended (but not required) to use 2 different FQDs (fully qualified domains) for this service.
+		1) FQD for 'end use' the short code, such as: 
+			http://examp.le
+		2) FQD for API calls to short code service, such as:
+			https://shrturl.example.com
+	For Example:
+		1) on the 'end use' FQD
+			* install/configure project as described in installation section of this document
+			* additionally, configure your HTTP server with the equivilent of the following .htaccess:
+				RewriteEngine on
+				RewriteRule ^([^/\.]+)/?$ /shrt.php?code=$0 [L]
+			* now http://examp.le/abc will work to redirect to target URL
+				where 'abc' is the short code provided by previous call to short API
+				
+		2) on the API FQD, just use as normal (as described in above doc)
+		
+
 
 
 	
