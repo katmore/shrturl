@@ -33,21 +33,26 @@ Installation:
 	
 REST API usage:
 	* Display full (target) URL
-		* GET REQUEST: http://example.com/shrt.php?code=abc
+		* GET REQUEST: https://example.com/shrt.php?code=abc
 		* where 'abc' is the code returned by "Shorten URL" request
 		
 	* Shorten URL
-		* POST REQUEST: http://example.com/shrt.php?target=http://my_really_long_uri
+		* POST REQUEST: https://example.com/shrt.php?target=http://my_really_long_uri
 		* adding a query var named 'POST' to the query string to will also invoke 'POST'
 		* add a query var and value for 'url_base' if you want to display a short url with a base
-			URL other than what is configured in the 'default' section of shrt-config.php
+			URL other than what is configured in the 'default' section of shrt-config.php.
+		* A value for 'url_base' should correspond with a config var in shrt-config.php
+			using example in shrt-config-example.php:
+			POST REQUEST: https://example.com/shrt.php?target=http://my_really_long_uri&url_base=reallyshort
+			would display: http://rlysh.rt/abc
+			
 		
 	* Change Target URL
-		* POST REQUEST: http://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
+		* POST REQUEST: https://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
 		* adding a query var named 'POST' to the query string to will also invoke 'POST'
 	
 	* Shorten Multiple URLs
-		* POST REQUEST: http://example.com/shrt.php?request={JSON_document}
+		* POST REQUEST: https://example.com/shrt.php?request={JSON_document}
 		* where 'target' is a valid JSON document with the following structure:
 		* {"shrt":{"target":['http://target_url_1','http://target_url_2','http://etc']}}
 		* adding a query var named 'POST' to the query string to will also invoke 'POST'
