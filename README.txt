@@ -23,7 +23,7 @@ Definitions:
 
 Installation:
 	* extract/copy this project somewhere
-	* have a mysql database ready with access for a user/pass
+	* have a MariaDB server ready with access for a user/pass (or MySQL)
 	* create database structure with url_table.sql
 	* edit shrt-config.php appropriately
 	* run url_codes.sql OR
