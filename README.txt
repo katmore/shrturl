@@ -81,7 +81,7 @@ Practical Implementation Hints:
 				where 'abc' is the short code provided by previous call to short API
 				
 		2) on the API FQD use as described in usage section
-			* in API requets to obtain a short code ensure that:
+			* in API requests to obtain a short code ensure that:
 				provide a url_base parameter in query that corresponds to the 'end use' FQD
 				that is set in your shrt-config-example.php
 				
