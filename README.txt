@@ -86,7 +86,6 @@ Practical Implementation Hints:
 			* in API requets to obtain a short code ensure that:
 				provide a url_base parameter in query that corresponds to the 'end use' FQD
 				that is set in your shrt-config-example.php
-			* for example:
 				
 		
 
