@@ -74,11 +74,9 @@ Practical Implementation Hints:
 	For Example:
 		1) on the 'end use' FQD
 			* install/configure project as described in installation section of this document
-			* configure a url_base additional to the default
-				* see the section in shrt-config-example.php
-			* additionally, configure your HTTP server with the equivilent of the following .htaccess:
-				RewriteEngine on
-				RewriteRule ^([^/\.]+)/?$ /shrt.php?code=$0 [L]
+			* configure a url_base in addition to the 'default'
+				see url_base section in shrt-config-example.php
+				contains example of .htaccess or equivelent configuration for web server
 			* http://rlysh.rt/abc will work now
 				where 'abc' is the short code provided by previous call to short API
 				
