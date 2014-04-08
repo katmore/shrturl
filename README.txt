@@ -16,13 +16,20 @@ Description:
 	* It uses MySQL innoDB engine for transaction support.
 	* It will display the target URL when provided with the 'code'.
 
+Definitions:
+	* 'code' or 'short code': the unique portion (token) contained in a short URL
+	that serves as reference to full URL. The jibberish looking sequence of alpha numeric
+	characters used in most URL shorteners.
+
 Installation:
 	* extract/copy this project somewhere
 	* have a mysql database ready with access for a user/pass
 	* create database structure with url_table.sql
 	* edit shrt-config.php appropriately
 	* run url_codes.sql OR
-	* optionally run 'make_codes.php' to add possible codes to your database (takes much longer but will be unique to your implementation)
+	* optionally run 'make_codes.php' to add possible codes to your database, takes much longer but:
+		* will create short code allocation order unique to your implementation
+		* can safely run on a live running implementation to create more available short codes
 	
 REST API usage:
 	* Display full (target) URL
