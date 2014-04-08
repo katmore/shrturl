@@ -13,7 +13,7 @@ Description:
 	* It DOES NOT use an algorithm to convert an ID to the short url code
 	* It relies on a predifined list of codes existing in a database.
 	* On a shorten request, it persistently associates a code with the target.
-	* It uses MySQL innoDB engine for transaction support.
+	* It uses innoDB engine for transaction support.
 	* It will display the target URL when provided with the 'code'.
 
 Definitions:
