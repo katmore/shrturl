@@ -19,11 +19,10 @@ Description:
 Installation:
 	* extract/copy this project somewhere
 	* have a mysql database ready with access for a user/pass
-	* export a predefined list of 'codes' to a table named 'url'
-	* see url_table.sql for schema
+	* create database structure with url_table.sql
 	* edit shrt-config.php appropriately
 	* run url_codes.sql OR
-	* optionally run 'make_codes.php' to add possible codes to your database (takes much longer)
+	* optionally run 'make_codes.php' to add possible codes to your database (takes much longer but will be unique to your implementation)
 	
 REST API usage:
 	* Display full (target) URL
