@@ -61,41 +61,41 @@
       ```
 	
 ### REST API usage ###
-	* Redirect to target URL
-		* GET REQUEST METHOD
-         > https://example.com/shrt.php?code=abc
-	* where 'abc' is the code returned by "Shorten URL" request
-		
-	* Display short URL, Create if it does not exist
-		* POST REQUEST METHOD
-         > https://example.com/shrt.php?target=http://my_really_long_uri
-         * adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
-            > https://example.com/shrt.php?POST&target=http://my_really_long_uri
-	   	* add a query var and value for 'url_base' if you want to display a short url with a base
-	   		> URL other than what is configured in the 'default' section of shrt-config.
-            > A value for 'url_base' should correspond with a config var in shrt-config.php
-      		
-      * POST REQUEST METHOD
-         > https://example.com/shrt.php?target=http://my_really_long_uri&url_base=reallyshort
-			* would display/create: http://rlysh.rt/abc
-         * see example in shrt-config-example.php
-            > [https://github.com/katmore/shrturl/blob/master/shrt-config-example.php]
-		
-	* Change Target URL
-		* POST REQUEST METHOD
-         > https://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
-		* adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
+* Redirect to target URL
+	* GET REQUEST METHOD
+      > https://example.com/shrt.php?code=abc
+* where 'abc' is the code returned by "Shorten URL" request
 	
-	* Shorten Multiple URLs
-		* POST REQUEST METHOD
-      > https://example.com/shrt.php?request={JSON_document}
-		* where 'target' is a valid JSON document with the following structure:
+* Display short URL, Create if it does not exist
+	* POST REQUEST METHOD
+      > https://example.com/shrt.php?target=http://my_really_long_uri
+      * adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
+         > https://example.com/shrt.php?POST&target=http://my_really_long_uri
+   	* add a query var and value for 'url_base' if you want to display a short url with a base
+   		> URL other than what is configured in the 'default' section of shrt-config.
+         > A value for 'url_base' should correspond with a config var in shrt-config.php
+   		
+   * POST REQUEST METHOD
+      > https://example.com/shrt.php?target=http://my_really_long_uri&url_base=reallyshort
+		* would display/create: http://rlysh.rt/abc
+      * see example in shrt-config-example.php
+         > [https://github.com/katmore/shrturl/blob/master/shrt-config-example.php]
+	
+* Change Target URL
+	* POST REQUEST METHOD
+      > https://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
+	* adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
 
-      ``` json
-		{"shrt":{"target":['http://target_url_1','http://target_url_2','http://etc']}}
-      ```
-      
-		* adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
+* Shorten Multiple URLs
+	* POST REQUEST METHOD
+   > https://example.com/shrt.php?request={JSON_document}
+	* where 'target' is a valid JSON document with the following structure:
+
+   ``` json
+	{"shrt":{"target":['http://target_url_1','http://target_url_2','http://etc']}}
+   ```
+   
+	* adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
 		
 
 ### Deployment Suggestions ###
