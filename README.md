@@ -98,7 +98,7 @@
 		* adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
 		
 
-### Deployment Guidelines ###
+### Deployment Suggestions ###
 * use 2 different FQDNs (fully qualified domain names) for this service
    1. FQDN for 'end use' the short code, such as: 
       > http://rlysh.rt
