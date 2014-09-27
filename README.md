@@ -34,9 +34,11 @@
    1. extract/copy this project somewhere
    2. have a MariaDB server ready with access for a user/pass 
    3. prepare database structure with url_table.sql
+   
    ``` sh
    mysql < url_table.sql
    ```
+ 
    4. edit shrt-config.php appropriately
    ``` sh
    vi shrt-config.php
@@ -45,11 +47,15 @@
       1. run url_codes.sql
       ``` sh
       mysql < url_codes.sql
+      ```
+      
       2. optionally run 'make_codes.php' to add possible codes to your database, takes much longer but will create short code allocation order unique to your implementation
       ``` sh
       php make_codes.php
       ```
+      
    6. at anytime it is safe to run 'make_codes.php" run on a live running implementation to create more available short codes
+     
       ``` sh
       php make_codes.php
       ```
@@ -58,7 +64,7 @@
 	* Redirect to target URL
 		* GET REQUEST METHOD
          > https://example.com/shrt.php?code=abc
-		   > where 'abc' is the code returned by "Shorten URL" request
+	* where 'abc' is the code returned by "Shorten URL" request
 		
 	* Display short URL, Create if it does not exist
 		* POST REQUEST METHOD
@@ -101,9 +107,9 @@
       1. install/configure project as described in installation section of this document
       2. configure a url_base in addition to the 'default'
       > see url_base section in shrt-config-example.php
-		> contains example of .htaccess or equivelent configuration for web server
-		> http://rlysh.rt/abc will work now
-		> where 'abc' is the short code provided by previous call to short API
+	* contains example of .htaccess or equivelent configuration for web server
+	* http://rlysh.rt/abc will work now
+	* where 'abc' is the short code provided by previous call to short API
 				
    2. on the API FQD use as described in usage section
    > in API requests to obtain a short code ensure that:
