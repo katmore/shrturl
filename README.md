@@ -18,16 +18,13 @@
    * target url: the full URL that needs to be changed into a short URL
 
 * Latest Version:
-   * [http://github.com/katmore/shrturl]
+   * http://github.com/katmore/shrturl
 
 * Documentation
-   * [http://github.com/katmore/shrturl/wiki]
+   * http://github.com/katmore/shrturl/wiki
 
-* License
-   * 2-clause "Simplified BSD License" a.k.a. "FreeBSD License" - see LICENSE.txt
-   * [https://github.com/katmore/shrturl/blob/master/LICENSE.txt]
-
-* Author
+* Legal
+   * License: "2-clause Simplified BSD License", see [LICENSE.txt](https://github.com/katmore/shrturl/blob/master/LICENSE.txt)
    * Copyright (c) 2012-2014 Doug Bird, All Rights Reserved.
 
 ### Installation ###
@@ -101,9 +98,11 @@
 ### Deployment Suggestions ###
 * use 2 different FQDNs (fully qualified domain names) for this service
    1. FQDN for 'end use' the short code, such as: 
-      > http://rlysh.rt
+   > http://rlysh.rt
+
    2. FQDN for API calls to short code service, such as:
-      > https://shrturl.example.com
+   > https://shrturl.example.com
+
 * example:
    1. on the 'end use' FQD
       1. install/configure project as described in installation section of this document
