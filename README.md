@@ -60,12 +60,12 @@
 ### REST API usage ###
 * Redirect to target URL
 	* GET REQUEST METHOD
-      > https://example.com/shrt.php?code=abc
+      	`https://example.com/shrt.php?code=abc`
 * where 'abc' is the code returned by "Shorten URL" request
 	
 * Display short URL, Create if it does not exist
 	* POST REQUEST METHOD
-      > https://example.com/shrt.php?target=http://my_really_long_uri
+      	`https://example.com/shrt.php?target=http://my_really_long_uri`
       * adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
          > https://example.com/shrt.php?POST&target=http://my_really_long_uri
    	* add a query var and value for 'url_base' if you want to display a short url with a base
@@ -80,7 +80,7 @@
 	
 * Change Target URL
 	* POST REQUEST METHOD
-      > https://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
+      	> https://example.com/shrt.php?changeTarget=http://a_different_really_long_uri&code=abc
 	* adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
 
 * Shorten Multiple URLs
