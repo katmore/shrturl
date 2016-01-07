@@ -14,11 +14,6 @@
  */
 
 /*
- * path to folder with shrt include files
- */
-$config["include_path"] = "./include"; 
-
-/*
  * mysql connection parameters
  */
 $config["my_user"] = "shrt"; //mysql username
@@ -79,12 +74,6 @@ $config["change_error_reporting"] = true;
 $config["error_reporting"] = E_ALL;
 
 /*
- * system path to error folder (can be relative)
- *    no trailing slash
- */
-$config["error_path"] = "error";
-
-/*
  * the "theme" of error messages
  *    'unicorn' is the only one that included by default
  *    it displays an angry unicorn along with brief description of error
@@ -92,9 +81,17 @@ $config["error_path"] = "error";
 $config["error_theme"] = "unicorn";
 
 /*
+ * system path to error folder (can be relative)
+ *    no trailing slash
+ */
+$config["theme_path"] = __DIR__."/error/".$config["error_theme"];
+
+
+
+/*
  * the public URL to the error directory (for theme resources, such as an angry unicorn image)
  */
-$config["error_url_base"] = "http://example.com/shrt/error";
+$config["theme_url"] = "http://example.com/shrt/theme/".$config["error_theme"];
 
 
 

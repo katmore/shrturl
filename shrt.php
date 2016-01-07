@@ -15,8 +15,8 @@ if (isset($_REQUEST) && !empty($_REQUEST['url_base']) && isset($config['url_base
    $urlBaseConfig = $_REQUEST['url_base'];
 }
 
-Service::setThemePath($config["error_theme"]);
-Service::setThemeURL($config["error_url_base"]);
+Service::setThemePath($config["theme_path"]);
+Service::setThemeURL($config["theme_url"]);
 
 (new Service(
    new Factory(
