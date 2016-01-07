@@ -16,15 +16,15 @@
 /*
  * path to folder with shrt include files
  */
-$shrtconfig["include_path"] = "./include"; 
+$config["include_path"] = "./include"; 
 
 /*
  * mysql connection parameters
  */
-$shrtconfig["my_user"] = "shrt"; //mysql username
-$shrtconfig["my_pass"] = "";  //mysql password
-$shrtconfig["my_dbname"] = "shrt"; //mysql database
-$shrtconfig["my_host"] = "localhost"; //mysql host
+$config["my_user"] = "shrt"; //mysql username
+$config["my_pass"] = "";  //mysql password
+$config["my_dbname"] = "shrt"; //mysql database
+$config["my_host"] = "localhost"; //mysql host
 
 /*
  * define a url base for short URLs
@@ -35,7 +35,7 @@ $shrtconfig["my_host"] = "localhost"; //mysql host
  *       (where example.com/shrt points to this project's install)
  *    
  */
-$shrtconfig["url_base"]["default"] = 'http://example.com/shrt/shrt.php?code=';
+$config["url_base"]["default"] = 'http://example.com/shrt/shrt.php?code=';
 
 /*
  * if you want a REALLY short URL, consider the following:
@@ -51,7 +51,7 @@ $shrtconfig["url_base"]["default"] = 'http://example.com/shrt/shrt.php?code=';
  # 
  # RewriteRule ^(.*) /shrt.php?code=$1 [L]
  */
-$shrtconfig["url_base"]["reallyshort"] = 'http://rlysh.rt';
+$config["url_base"]["reallyshort"] = 'http://rlysh.rt';
 
 /*
  * access control: (who can add new URLs to shorten)
@@ -62,39 +62,39 @@ $shrtconfig["url_base"]["reallyshort"] = 'http://rlysh.rt';
  *       write a backend client to this service
  *       and add the IP(s) of your webservers here 
  */
-$shrtconfig["allow_POST"][] = "192.168.0.1"; //IP address of 1st device allowed to add URLs to shorten
-$shrtconfig["allow_POST"][] = "192.168.0.2"; //IP address of 2nd device allowed to add URLs to shorten
+$config["allow_POST"][] = "192.168.0.1"; //IP address of 1st device allowed to add URLs to shorten
+$config["allow_POST"][] = "192.168.0.2"; //IP address of 2nd device allowed to add URLs to shorten
 
 
 /*
  * the m-type for the output of this script
  */
-$shrtconfig["Content-type"] = "text/plain";
+$config["Content-type"] = "text/plain";
 
 
 /*
  * error reporting options
  */
-$shrtconfig["change_error_reporting"] = true;
-$shrtconfig["error_reporting"] = E_ALL;
+$config["change_error_reporting"] = true;
+$config["error_reporting"] = E_ALL;
 
 /*
  * system path to error folder (can be relative)
  *    no trailing slash
  */
-$shrtconfig["error_path"] = "error";
+$config["error_path"] = "error";
 
 /*
  * the "theme" of error messages
  *    'unicorn' is the only one that included by default
  *    it displays an angry unicorn along with brief description of error
  */
-$shrtconfig["error_theme"] = "unicorn";
+$config["error_theme"] = "unicorn";
 
 /*
  * the public URL to the error directory (for theme resources, such as an angry unicorn image)
  */
-$shrtconfig["error_url_base"] = "http://example.com/shrt/error";
+$config["error_url_base"] = "http://example.com/shrt/error";
 
 
 
@@ -103,7 +103,7 @@ $shrtconfig["error_url_base"] = "http://example.com/shrt/error";
 
 
 
-
+return $config;
 
 
 
