@@ -58,10 +58,11 @@
       ```
 	
 ### REST API usage ###
-* Redirect to target URL
-	* GET REQUEST METHOD
-      	`https://example.com/shrt.php?code=abc`
-* where 'abc' is the code returned by "Shorten URL" request
+* Redirect to target URL:
+
+   `https://example.com/shrt.php?code=abc`
+
+	(where 'abc' is the code returned by "Shorten URL" request)
 	
 * Display short URL, Create if it does not exist
 	* POST REQUEST METHOD
