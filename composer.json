@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Katmore\\Shrt\\": "src/Shrt/"
+        }
+    },
+    "require": {
+        "php" : ">=5.6",
+        "ext-pdo": "*",
+        "ext-pdo_mysql" : "*"
+    }
+}

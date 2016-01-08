@@ -3,20 +3,16 @@ namespace Katmore\Shrt;
 class ChangeTarget extends Code {
     
    public function __construct(\PDO $pdo,$newTarget,$code) {
-      $newTarget = $myi->real_escape_string($newTarget);
-      $code = $myi->real_escape_string($code);
-      $sql = "
+      $stmt = $pdo->prepare("
       UPDATE
       url
       SET
-      target='$newTarget'
+      target=:newTarget
       WHERE
-      code='$code'
-      ";
-      if (!$result = $myi->query($sql)) {
-         throw new Exception("mysql error ".$myi->errno. " " . $myi->error, 1);
-      }
-      if ($myi->affected_rows<1) return false;
+      code=:code
+      ");
+      $stmt->execute([":newTarget"=> $newTarget, ":code"=> $code]);      
+      if (!$stmt->rowCount()) return false;
       return true;
    }
     

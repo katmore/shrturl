@@ -9,6 +9,9 @@ class Factory {
    ) {
       $this->_pdo = $pdo;
    }
+   /**
+    * @return \Katmore\Shrt\Target
+    */
    public function codeToTarget($code) {
       return new Target($code,$this->myi);
    }
@@ -23,6 +26,10 @@ class Factory {
     */   
    public function changeTarget($newTarget,$code) {
       return new ChangeTarget($this->_pdo,$newTarget,$code);
+   }
+   
+   public static function pdoConnect() {
+      
    }
    
 }
