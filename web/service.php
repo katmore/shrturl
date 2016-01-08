@@ -30,12 +30,7 @@ call_user_func(function($config) {
    
    (new Service(
       new Factory(
-         new \PDO(
-            $config["pdo"]["dsn"], 
-            $config["pdo"]["user"], 
-            $config["pdo"]["pass"],
-            $config["pdo"]["options"]
-         )
+         Factory::loadPDO($config["pdo"])
       ),
       $codeURLPrefix,
       $_REQUEST,

@@ -4,12 +4,7 @@ if (!isset($config)) {
    $config = require(__DIR__."/../web/config.php");
    header("Content-type: text/plain");
 }
-$pdo = new \PDO(
-   $config["pdo"]["dsn"], 
-   $config["pdo"]["user"], 
-   $config["pdo"]["pass"],
-   $config["pdo"]["options"]
-);
+$pdo = Factory::loadPDO($config["pdo"]);
 $num = 1000;
 $col = 8;
 $len = null;

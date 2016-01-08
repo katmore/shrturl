@@ -27,9 +27,24 @@ class Factory {
    public function changeTarget($newTarget,$code) {
       return new ChangeTarget($this->_pdo,$newTarget,$code);
    }
-   
-   public static function pdoConnect() {
-      
+   /**
+    * @return \PDO
+    */
+   public static function loadPDO($config) {
+      if (isset($config['options']) && is_array($config['options'])) {
+         $options = $config['options'];
+      }else {
+         $options=[];
+      }
+      if (!isset($options[\PDO::ATTR_ERRMODE]) || $options[\PDO::ATTR_ERRMODE]!=\PDO::ERRMODE_EXCEPTION) {
+         $options[\PDO::ATTR_ERRMODE]=\PDO::ERRMODE_EXCEPTION;
+      }
+      return new \PDO(
+            $config["dsn"],
+            $config["user"],
+            $config["pass"],
+            $options
+      );      
    }
    
 }
