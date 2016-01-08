@@ -1,24 +1,34 @@
 <?php
 namespace Katmore\Shrt;
 class ServiceError {
-   private $response_code;
-   private $message;
-   public function getThemeUrl() {
-      return shrt_error_url_base . "/theme/" .shrt_error_theme;
-   }
+   private $_statusCode;
+   private $_statusString;
+   private $_themePath;
+   private $_themeURL;
+   
    public function header() {
-      header($_SERVER['SERVER_PROTOCOL'] . " ".$this->response_code." ".$this->message, true, $this->response_code);
+      header("HTTP/1.1 ".$this->_statusCode." ".$this->_statusString, true, $this->_statusCode);
    }
-   public function display() {
-      $errfile = shrt_error_path."/theme/".shrt_error_theme."/".$this->response_code.".inc.php";
-      if (is_readable($errfile) ) {
-         require($errfile);
+   public function display($infoMessage=null) {
+      $themeData = new ThemeData(['themePath'=>$this->_themePath,'themeURL'=>$this->_themeURL,'infoMessage'=>$infoMessage]);
+      if ($errorTemplate = $themeData->getTemplatePath($this->_statusCode) ) {
+         call_user_func(function() use ($errorTemplate,$themeData) {
+            require($errorTemplate);
+         });
+      } elseif ($errorTemplate = $themeData->getTemplatePath("error") ) {
+         $themeData = new ThemeData();
+         call_user_func(function() use ($errorTemplate,$themeData) {
+            require($errorTemplate);
+         });
       } else {
-         echo "error: ".$this->response_code." ".$this->message;
+         echo $this->_statusCode." ".$this->_statusString;
+         if (is_string($infoMessage) && !empty($infoMessage)) echo ":".$infoMessage; 
       }
    }
-   public function __construct($response_code,$message,$themePath,$themeURL) {
-      $this->response_code = $response_code;
-      $this->message = $message;
+   public function __construct($statusCode,$statusString,$themePath,$themeURL) {
+      $this->_statusCode = $statusCode;
+      $this->_statusString = $statusString;
+      $this->_themePath = $themePath;
+      $this->_themeURL = $themeURL;
    }
 }
