@@ -1,24 +1,11 @@
 <?php
-use \Katmore\Shrt;
+/**
+ * Entry point to installer script
+ */
+$app_dir = __DIR__.'/../app';
 
-header("Content-type: text/plain");
-
-if (!is_readable("config.php")) {
-   die("(ERROR) missing config.php. hint: copy config-sample.php");
-}
-
-echo "(OK) found config.php\n";
-
-$loader =  __DIR__.'/../app/autoload.php';
-if (!is_readable($loader)) {
-   die("(ERROR) cannot find the autoloader. did you run composer?");
-}
-
-echo "(OK) found autoloader\n";
-
-if (!class_exists("\\Katmore\\Shrt\\Factory")) {
-   die("(ERROR) cannot find Factory class. hint: check composer.json and output from composer for any configuration issues.");
-}
-
-echo "(OK) found Shrt Factory\n";
-
+call_user_func(function($config) use ($app_dir) {
+   
+   require_once "$app_dir/autoload.php";
+   
+});

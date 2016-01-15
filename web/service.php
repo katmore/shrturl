@@ -2,11 +2,11 @@
 /**
  * Web Service to Shorten a URL
  */
+$app_dir = __DIR__.'/../app';
 
-use \Katmore\Shrt\Service;
-use \Katmore\Shrt\Factory;
-
-call_user_func(function($config) {
+call_user_func(function($config) use ($app_dir) {
+   
+   require_once "$app_dir/autoload.php";
    
    if(is_string($config)) {
       $config = require($config);
