@@ -106,5 +106,5 @@ characters used in most URL shorteners.
    > that is set in your shrt-config-example.php
 				
 ## Legal ##
-   * License: "2-clause Simplified BSD License", see [LICENSE.txt](https://github.com/katmore/shrturl/blob/master/LICENSE.txt)
+   * License: "2-clause Simplified BSD License", see [LICENSE](LICENSE)
    * Copyright (c) 2012-2014 Doug Bird, All Rights Reserved.
