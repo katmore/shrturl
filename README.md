@@ -85,13 +85,13 @@ characters used in most URL shorteners.
 
 ## Webservice Deployment Suggestions ###
 * use 2 different FQDNs (fully qualified domain names) for this service
-   FQDN #1 for 'end use' the short code, such as: 
+   * FQDN #1 for 'end use' the short code, such as: 
    > http://rlysh.rt
 
-   FQDN #2 for API calls to short code service, such as:
+   * FQDN #2 for API calls to short code service, such as:
    > https://shrturl.example.com
 
-* example:
+* for example:
    1. on the 'end use FQDN' (#1)
       1. install/configure project as described in installation section of this document
       2. configure a url_base in addition to the 'default'
@@ -100,7 +100,7 @@ characters used in most URL shorteners.
 	* http://rlysh.rt/abc will work now
 	* where 'abc' is the short code provided by previous call to short API
 				
-   2. on the 'API FQDN' (#2) use as described in usage section
+   1. on the 'API FQDN' (#2) use as described in usage section
    > in API requests to obtain a short code ensure that:
    > provide a url_base parameter in query that corresponds to the 'end use' 
    > that is set in your shrt-config-example.php
