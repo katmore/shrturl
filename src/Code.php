@@ -1,5 +1,5 @@
 <?php
-namespace Katmore\Shrt;
+namespace Shrturl;
 class Code {
    /**
     * @var string Shrt Code

@@ -1,3 +1,10 @@
+/*
+ * shrturl Schema v1.0
+ * 
+ * @author Doug Bird
+ * 
+ * @version 1.0
+ */
 --
 -- Table structure for table `url`
 --

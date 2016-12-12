@@ -1,5 +1,5 @@
 <?php
-namespace Katmore\Shrt;
+namespace Shrturl;
 class ChangeTarget extends Code {
     
    public function __construct(\PDO $pdo,$newTarget,$code) {

@@ -1,5 +1,5 @@
 <?php
-namespace Katmore\Shrt;
+namespace Shrturl;
 class Target {
    protected $_targetURL;
    public function getTargetURL() {

@@ -1,5 +1,5 @@
 <?php
-namespace Katmore\Shrt;
+namespace Shrturl;
 class ServiceError {
    private $_statusCode;
    private $_statusString;

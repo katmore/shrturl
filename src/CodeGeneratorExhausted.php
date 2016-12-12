@@ -1,5 +1,5 @@
 <?php
-namespace Katmore\Shrt;
+namespace Shrturl;
 class CodeGeneratorExhausted extends \Exception {
    public function getMaxAttempts() {
       return $_maxAttempts;

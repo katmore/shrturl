@@ -1,5 +1,5 @@
 <?php
-namespace Katmore\Shrt;
+namespace Shrturl;
 class Service {
    
    public static function codeSession(Factory $factory, $codeUrlPrefix=null,$request=null) {

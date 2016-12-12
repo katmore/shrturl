@@ -1,5 +1,5 @@
 <?php
-namespace Katmore\Shrt;
+namespace Shrturl;
 class CodeGenerator extends Code {
    
    protected static function _randInt($min,$max) {
