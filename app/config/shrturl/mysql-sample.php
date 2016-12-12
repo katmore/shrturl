@@ -1,10 +1,10 @@
 <?php
 return (function() {
    $config['dbhost'] = "localhost";
-   $config['dbname'] = "clientcal";
+   $config['dbname'] = "shrturl";
    
-   $config['username'] = $config['dbuser'] = "clientcal";
-   $config['password'] = $config['dbpasswd'] = "";
+   $config['username'] = $config['user'] = "shrturl";
+   $config['password'] = $config['pass'] = "";
    $config['dsn'] = 'mysql:host='.$config['dbhost'].';dbname='.$config['dbname'];
    $config['options'] = [
       \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',

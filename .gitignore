@@ -3,4 +3,4 @@
 /vendor
 composer.lock
 /app/data/mysql/backup
-/app/config/shrt/mysql.php
+/app/config/shrturl/mysql.php

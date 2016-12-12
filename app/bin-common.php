@@ -1,5 +1,5 @@
 <?php
-use clientcal\config;
+use Shrturl\Config;
 
 /**
  * @return \Composer\Autoload\ClassLoader
@@ -18,7 +18,7 @@ return (function() {
    /*
     * set base configuration for clientcal
     */
-   config::SetBaseDir(require __DIR__.'/config/shrturl-config-path.php'); 
+   Config::SetBaseDir(require __DIR__.'/config/shrturl-config-path.php'); 
    
    return $autoloader;
 })();

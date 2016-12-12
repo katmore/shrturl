@@ -8,7 +8,7 @@ return(function() {
       
       const ME_LABEL = 'Shrturl Code Generator';
       
-      const USAGE = '<number of short codes to create> [--quiet | --verbose] [--length=< (default: %FALLBACK_LEN%)>] [--app-dir=<path to project app directory>]';
+      const USAGE = '<number of short codes to create> [--help] [--quiet | --verbose] [--length=<length of short codes (default: %FALLBACK_LEN%)>] [--app-dir=<path to project app directory>]';
        
       const COPYRIGHT = '(c) 2012-2017 Doug Bird. All Rights Reserved.';
        
@@ -27,9 +27,9 @@ return(function() {
        * @static
        */
       public static function showUsage() {
-         $fallbackNum = self::FALLBACK_NUM;
+         $fallbackLen = self::FALLBACK_LEN;
          $usage = self::USAGE;
-         $usage = str_replace("%FALLBACK_NUM%", self::FALLBACK_NUM, $usage);
+         $usage = str_replace("%FALLBACK_LEN%", $fallbackLen, $usage);
          echo "Usage: ".PHP_EOL;
          echo "   ".SELF::ME." ".$usage.\PHP_EOL;
       }
@@ -91,7 +91,7 @@ return(function() {
       public function __construct() {
          global $argv;
          
-         if (isset(getopt("",["usage",])['usage'])) {
+         if (isset(getopt("",["usage",])['usage']) || isset(getopt("",["help",])['help'])) {
             self::_showIntro();
             self::showUsage();
             return;
@@ -106,10 +106,11 @@ return(function() {
          
          require self::_getAppDir() . "/bin-common.php";
          
-         if (empty($num = $argv[1])) {
+         if (empty($argv[1])) {
             self::_showErrLine([self::ME . ": (ERROR) missing 'number of short codes to create'"]);
             return $this->_exitStatus = 1;
          }
+         $num = $argv[1];
          
          if (
             ($num != sprintf("%d",$num)) ||
@@ -118,9 +119,9 @@ return(function() {
             return $this->_exitStatus = 1;
          }
          
-         if (!empty($len = getopt("",["length::",])['length'])) {
+         if (!empty(getopt("",["length::",])['length'])) {
          
-         
+            $len =getopt("",["length::",])['length'];
             if (
                   ($len != sprintf("%d",$len)) || 
                   ($len < self::CODE_LEN_FLOOR) ||
@@ -137,7 +138,18 @@ return(function() {
          
          $num = (int) $num;
          $len = (int) $len;
-         $pdo = Factory::loadPDO(Config::LoadAssoc("mysql"));
+         $mycfg = Config::LoadAssoc("mysql");
+
+         try {
+            if (!$pdo = Factory::loadPDO(Config::LoadAssoc("mysql"))) {
+               self::_showErrLine([self::ME.": (ERROR) Could not establish PDO connection"]);
+               return $this->_exitStatus = 1;
+            }
+         } catch (\PDOException $e) {
+            self::_showErrLine([self::ME.": (ERROR) Connection failed: ".$e->getMessage()]);
+            return $this->_exitStatus = 1;
+         }
+         
          $col = 8;
          $this->_quiet || self::_showLine([ "generating $num new short codes $len chars long"]);
          
