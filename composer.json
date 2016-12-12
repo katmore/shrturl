@@ -1,6 +1,6 @@
 {
    "name": "katmore/shrturl",
-   "description" : "a RESTful 'URL shortener' service.",
+   "description" : "a URL shortener webservice",
    "homepage":"https://github.com/katmore/shrturl",
     "license": [
        "MIT",
