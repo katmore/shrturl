@@ -11,5 +11,5 @@ CREATE TABLE `url` (
   UNIQUE KEY `code` (`code`),
   UNIQUE KEY `md5` (`md5`),
   KEY `id` (`id`),
-  KEY `code_2` (`code`,`target`(255))
+  KEY `code_target` (`code`,`target`(255))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
