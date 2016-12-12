@@ -4,7 +4,7 @@
 
 CREATE TABLE `url` (
   `id` bigint(20) NOT NULL,
-  `code` char(32) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
+  `code` char(32) CHARACTER SET utf8_bin COLLATE utf8_bin NOT NULL,
   `md5` char(32) COLLATE utf8_bin DEFAULT NULL,
   `target` text COLLATE utf8_bin,
   `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
