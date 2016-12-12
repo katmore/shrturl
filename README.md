@@ -1,21 +1,7 @@
 # shrturl #
-## a RESTful 'URL shortener' service written in PHP ##
+*a URL shortener webservice*
 
-### About ###
-* The goal of this project is to make a web service that behaves similar to enterprise level URL shortening services (such as bit.ly).
-* In many situations, it is more ideal than other URL shorteners, including bit.ly
-* DOES NOT use an algorithm to convert an ID to the short url code
-   * relies on a predifined list of codes existing in a database.
-   * On a shorten request, it persistently associates a code with the target.
-   * uses innoDB engine for transaction support.
-   * It can redirect or display the target URL when provided with the 'code'.
-
-* Terminology
-   * 'code' or 'short code': the unique portion (token) contained in a short URL
-	that serves as reference to full URL. The typically jibberish looking sequence of alpha numeric
-	characters used in most URL shorteners.
-   * short url: the full URL that includes the short code (ie: http://example.com/shrt.php?code=abc)
-   * target url: the full URL that needs to be changed into a short URL
+Shrturl is a RESTful web service that behaves similar to enterprise level URL shortening services (such as bit.ly).
 
 * Latest Version:
    * http://github.com/katmore/shrturl
@@ -23,41 +9,42 @@
 * Documentation
    * http://github.com/katmore/shrturl/wiki
 
-* Legal
-   * License: "2-clause Simplified BSD License", see [LICENSE.txt](https://github.com/katmore/shrturl/blob/master/LICENSE.txt)
-   * Copyright (c) 2012-2014 Doug Bird, All Rights Reserved.
+## Terminology ##
+ * **code** or **short code**: the unique portion (token) contained in a short URL
+that serves as reference to full URL. The typically jibberish looking sequence of alpha numeric
+characters used in most URL shorteners.
+ * **short url**: the full URL that includes the short code (ie: http://example.com/shrt.php?code=abc)
+ * **target url**: the full URL that needs to be changed into a short URL
 
-### Installation ###
-   1. extract/copy this project somewhere
-   2. have a MariaDB server ready with access for a user/pass 
-   3. prepare database structure with url_table.sql
+## Installation ##
+   1. extract/copy the **shrturl project** somewhere
+   ```bash
+   git clone https://github.com/katmore/shrturl.git
+   cd shrturl
+   ```
    
-   ``` sh
-   mysql < url_table.sql
+   2. create autoloader and resolve dependencies using Composer...
+   ```bash
+   composer update
    ```
- 
-   4. edit shrt-config.php appropriately
-   ``` sh
-   vi shrt-config.php
+   
+   3. run the db-install.php script...
+   ```bash
+   php bin/db-install.php
    ```
-   5. choose ONE of the following methods to populate the database with random short codes
-      1. run url_codes.sql
-      ``` sh
-      mysql < url_codes.sql
-      ```
-      
-      2. optionally run 'make_codes.php' to add possible codes to your database, takes much longer but will create short code allocation order unique to your implementation
-      ``` sh
-      php make_codes.php
-      ```
-      
-   6. at anytime it is safe to run 'make_codes.php" run on a live running implementation to create more available short codes
-     
-      ``` sh
-      php make_codes.php
-      ```
-	
-### REST API usage ###
+   
+   4. copy *app/config/shrturl/mysql-sample.php* to **mysql.php** and edit...
+   ```bash
+   cp app/config/shrturl/mysql-sample.php app/config/shrturl/mysql.php
+   vi app/config/shrturl/mysql.php
+   ```
+   
+   5. populate the database with initial set of randomly generated short codes...
+   ```bash
+   php bin/make-codes.php 1000
+   ```
+   
+## Webservice Usage ##
 * Redirect to target URL:
 
    `https://example.com/shrt.php?code=abc`
@@ -96,7 +83,7 @@
 	* adding a query var named 'POST' to the query string to will also invoke 'POST' (if using GET REQUEST METHOD)
 		
 
-### Deployment Suggestions ###
+## Webservice Deployment Suggestions ###
 * use 2 different FQDNs (fully qualified domain names) for this service
    1. FQDN for 'end use' the short code, such as: 
    > http://rlysh.rt
@@ -118,8 +105,6 @@
    > provide a url_base parameter in query that corresponds to the 'end use' 
    > that is set in your shrt-config-example.php
 				
-		
-
-
-
-	
+## Legal ##
+   * License: "2-clause Simplified BSD License", see [LICENSE.txt](https://github.com/katmore/shrturl/blob/master/LICENSE.txt)
+   * Copyright (c) 2012-2014 Doug Bird, All Rights Reserved.
