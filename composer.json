@@ -6,6 +6,12 @@
        "MIT",
        "GPL-3.0+"
     ],
+    "authors": [
+        {
+            "name": "Paul D. Bird II",
+            "email": "retran@gmail.com"
+        }       
+    ],      
     "autoload": {
         "psr-4": {
             "Shrturl\\": "src/"
