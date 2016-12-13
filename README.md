@@ -33,10 +33,10 @@ characters used in most URL shorteners.
    php bin/db-install.php
    ```
    
-   4. copy *app/config/shrturl/mysql-sample.php* to **mysql.php** and edit...
+   4. copy *app/config/shrturl/mysql-sample.ini* to **mysql.ini** and edit...
    ```bash
-   cp app/config/shrturl/mysql-sample.php app/config/shrturl/mysql.php
-   vi app/config/shrturl/mysql.php
+   cp app/config/shrturl/mysql-sample.ini app/config/shrturl/mysql.ini
+   vi app/config/shrturl/mysql.ini
    ```
    
    5. populate the database with initial set of randomly generated short codes...
