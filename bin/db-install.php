@@ -211,7 +211,6 @@ EOT;
          unset($myCnfValue);
          unset($myCnfSetting);
          unset($usedSetting);
-         unset($myCnfFile);
       } else {
          foreach($pdoconfig as $k=>&$v) {
             if (!empty($option[$k])) $v=$option[$k];
@@ -261,7 +260,7 @@ EOT;
          if ($this->_nonInteractive || $myCnf) {
             $err=self::ME.": (ERROR) Connection failed: ".$e->getMessage();
       
-            if($myCnf) $err.=" using MySQL config file: $myCnf";
+            if($myCnf) $err.=" using MySQL config file: $myCnfFile";
       
             self::_showErrLine([$err]);
             return $this->_exitStatus = 1;

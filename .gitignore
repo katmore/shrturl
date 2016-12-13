@@ -5,8 +5,10 @@ composer.lock
 *.sql
 !/app/data/mysql/schema-sql/*/schema-dump.sql
 !/app/data/mysql/schema-sql/*/schema-updates.sql
-/app/config/shrturl/*.php
-/app/config/shrturl/**/*.php
+/app/config/shrturl/**/*
 !/app/config/shrturl/*-sample.php
+!/app/config/shrturl/*-sample.ini
 !/app/config/shrturl/**/*-sample.php
+!/app/config/shrturl/**/*-sample.ini
 !/app/config/shrturl/service.php
+!/app/config/shrturl/mysql.php
