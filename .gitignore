@@ -1,8 +1,8 @@
 .*
 !/.gitignore
-*.sql
 /vendor
 composer.lock
+*.sql
 !/app/data/mysql/schema-sql/*/schema-dump.sql
 !/app/data/mysql/schema-sql/*/schema-updates.sql
 /app/config/shrturl/*.php
