@@ -8,13 +8,15 @@ return(function() {
       
       const ME_LABEL = 'Shrturl Code Generator';
       
-      const USAGE = '<number of short codes to create> [--help] [--quiet | --verbose] [--length=<length of short codes (default: %FALLBACK_LEN%)>] [--app-dir=<path to project app directory>]';
+      const USAGE = '<number of short codes to create> [--help] [--quiet | --verbose] [--length=<length of short codes (default: %FALLBACK_LEN%)>] [--app-dir=<path to project app directory (default: %DEFAULT_APP_DIR%)>]';
        
       const COPYRIGHT = '(c) 2012-2017 Doug Bird. All Rights Reserved.';
        
       const ME = 'make-codes.php';
       
-      const FALLBACK_APP_DIR=__DIR__.'/../app';
+      const DEFAULT_APP_DIR='./../app';
+      
+      const FALLBACK_APP_DIR=__DIR__.self::DEFAULT_APP_DIR;
       
       const FALLBACK_LEN = 5;
       
@@ -27,9 +29,9 @@ return(function() {
        * @static
        */
       public static function showUsage() {
-         $fallbackLen = self::FALLBACK_LEN;
          $usage = self::USAGE;
-         $usage = str_replace("%FALLBACK_LEN%", $fallbackLen, $usage);
+         $usage = str_replace("%FALLBACK_LEN%", self::FALLBACK_LEN, $usage);
+         $usage = str_replace("%DEFAULT_APP_DIR%", self::DEFAULT_APP_DIR, $usage);
          echo "Usage: ".PHP_EOL;
          echo "   ".SELF::ME." ".$usage.\PHP_EOL;
       }
@@ -155,8 +157,16 @@ return(function() {
          
          $c = 0;
          for ($i=0;$i<$num;$i++) {
-         
-            echo (new CodeGenerator($pdo,$len))->formatCode();
+            try {
+               $code = new CodeGenerator($pdo,$len);
+            } catch (\PDOException $e) {
+               self::_showErrLine([self::ME.": (ERROR) Database error: ".$e->getMessage()]);
+               if ($e->errorInfo[1] == 1146) {
+                  self::_showErrLine([self::ME.": (ERROR) Missing expected table. Try: bin/db-install.php"]);
+               }
+               return $this->_exitStatus = 1;
+            }
+            $code->formatCode();
             $c++;
             if ($c==$col) {
                $this->_verbose && self::_showLine([]);
@@ -164,7 +174,6 @@ return(function() {
             } else {
                $this->_verbose && self::_showLine(["\t"]);
             }
-            
          }
       }
    })->getExitStatus())) {

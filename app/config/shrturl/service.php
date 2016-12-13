@@ -14,13 +14,13 @@ return (function() {
    $config["url_base"]["default"] = "$url_base_prefix/shrt.php?code=";
    
    /*
-    * $config["theme"]
+    * $config["unicorn"]
     * the "theme" of error messages
     *    'unicorn' and 'emote' themes are included by default
     *    unicorn displays an angry unicorn along with brief description of error
     *    emote displays a sad face along with a brief description of the error
     */
-   $config["theme"] = "unicorn";
+   $config["error_theme"] = "unicorn";
    
    /*
     * $config["theme_path"]

@@ -1,4 +1,5 @@
 <?php
+use Ifsnop\Mysqldump\Mysqldump;
 return(function() {
    if (0!==($exitStatus=($installer = new class() {
 
@@ -20,6 +21,13 @@ return(function() {
    
    const FALLBACK_SCHEMA_JSON = __DIR__ . "/../app/data/mysql/schema.json";
    
+   const FALLBACK_APP_DIR=__DIR__.'/../app';
+   private static function _getAppDir() :string {
+      if (!empty(getopt("",["app-dir::",])['app-dir'])) {
+         return getopt("",["app-dir::",])['app-dir'];
+      }
+      return self::FALLBACK_APP_DIR;
+   }
    /**
     * @return void
     * @static
@@ -75,6 +83,7 @@ Database Options:
    See: http://php.net/manual/en/pdo.construct.php
 EOT;
    }
+
    
    /**
     * @return void
@@ -230,12 +239,24 @@ EOT;
       
       try {
          $this->_quiet || self::_showLine(["Starting PDO connection..."]);
-         $pdo = new PDO(
+         $pdo = new class (
                $pdoconfig['dsn'],
                $pdoconfig['username'],
                $pdoconfig['password'],
                [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]
-               );
+               ) extends \PDO {
+                  public $dsn;
+                  public $username;
+                  public $password;
+                  public $options;
+                  public function __construct($dsn,$username,$password,$options) {
+                     $this->dsn = $dsn;
+                     $this->username = $username;
+                     $this->password = $password;
+                     $this->options = $options;
+                     parent::__construct($dsn,$username,$password,$options);
+                  }
+         };
       } catch (PDOException $e) {
          if ($this->_nonInteractive || $myCnf) {
             $err=self::ME.": (ERROR) Connection failed: ".$e->getMessage();
@@ -268,12 +289,24 @@ EOT;
                $pdoconfig['password'] = $newPassword;
             }
             try {
-               $pdo = new PDO(
+               $pdo = new class (
                      $pdoconfig['dsn'],
                      $pdoconfig['username'],
                      $pdoconfig['password'],
                      [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]
-                     );
+                     ) extends \PDO {
+                  public $dsn;
+                  public $username;
+                  public $password;
+                  public $options;
+                  public function __construct($dsn,$username,$password,$options) {
+                     $this->dsn = $dsn;
+                     $this->username = $username;
+                     $this->password = $password;
+                     $this->options = $options;
+                     parent::__construct($dsn,$username,$password,$options);
+                  }
+               };
             } catch (PDOException $e) {
                self::_showErrLine([self::ME.": (ERROR) Connection failed: ".$e->getMessage()]);
                return $this->_exitStatus = 1;
@@ -283,7 +316,6 @@ EOT;
       $this->_quiet || self::_showLine(["(PDO connection success)"]);
       return $pdo;
    }
-   
    /**
     * @var bool
     */
@@ -316,6 +348,8 @@ EOT;
       
       $this->_quiet || self::_showIntro();
       
+      require self::_getAppDir() . "/bin-common.php";
+      
       if (!($pdo = self::_getPdo()) instanceof PDO) return $pdo;
       
       $schemaJson = self::FALLBACK_SCHEMA_JSON;
@@ -340,6 +374,7 @@ EOT;
          public $version;
          public $table;
          public $sql_dir;
+         public $ns;
          public function __construct(array $cfg) {
              foreach($this as $prop=>&$v) {
                 if (!empty($cfg[str_replace("_","-",$prop)])) $v=$cfg[str_replace("_","-",$prop)];
@@ -386,30 +421,64 @@ EOT;
       $stmt = $pdo->query("SHOW TABLES LIKE '{$schemaCfg->table}'");
       if (!$stmt->rowCount()) {
          $pdo->query("CREATE TABLE `{$schemaCfg->table}` (
+           `ns` varchar(100) COLLATE utf8_bin NOT NULL,
            `version` varchar(20) COLLATE utf8_bin NOT NULL,
            `installed_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-           PRIMARY KEY (`version`),
-           KEY `installed_time` (`installed_time`)
+           PRIMARY KEY (`ns`,`version`),
+           KEY (`ns`,`installed_time`)
          ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-         $stmt = $pdo->query("SHOW TABLES LIKE 'customer'");
-         if ($stmt->rowCount()) $version = "1.98";
       } else {
-         $stmt = $pdo->query("
+         $stmt = $pdo->prepare("
          SELECT
-            version
+            `version`
          FROM
-            {$schemaCfg->table}
+            `{$schemaCfg->table}`
+         WHERE
+            `ns`=:ns
          ORDER BY
-            installed_time ASC
+            `installed_time` 
+         ASC
          LIMIT 1
          ");
+         $stmt->execute([':ns'=>$schemaCfg->ns]);
          if ($stmt->rowCount()) {
             $version = $stmt->fetch(PDO::FETCH_ASSOC)['version'];
-         } else {
-            $stmt = $pdo->query("SHOW TABLES LIKE 'customer'");
-            if ($stmt->rowCount()) $version = "1.98";
          }
       }
+      
+      $stmt = $pdo->query("SHOW TABLES");
+      if ($stmt->rowCount()>1) {
+         $backupFile = "{$pdo->query('select database()')->fetchColumn()}-".date("Ymd")."T".date("HiO").".sql";
+         self::_showErrLine([self::ME.": (WARNING) found existing database tables"]);
+         if ($this->_nonInteractive) {
+            $createBackup = true;
+         } else {
+            $createBackup = null;
+            for($i=0;$i<5;$i++) {
+               $confirm = readline("Create backup? [y/n]: ");
+               if (substr($confirm,0,1)=='y') {
+                  $createBackup = true;
+                  break 1;
+               } elseif (substr($confirm,0,1)=='n') {
+                  $createBackup = false;
+                  break 1;
+               }
+            }
+            if ($createBackup===null) {
+               self::_showErrLine([self::ME.": (ERROR) Invalid backup confirmation $i times."]);
+               return $this->_exitStatus = 1;
+            }
+         }
+         if ($createBackup) {
+            self::_showErrLine([self::ME.": (NOTICE) existing database will be exported to: $backupFile"]);
+            $this->_quiet || self::_showLine(["started export at ".date("c")."..."]);
+            $dump = new Mysqldump($pdo->dsn, $pdo->username, $pdo->password,[],$pdo->options);
+            $dump->start($backupFile);
+            $this->_quiet || self::_showLine(["(export complete)"]);
+         }
+      }
+      
+      
       if (!$version) {
          $dumpSql = "{$schemaCfg->sql_dir}/{$schemaCfg->version}/schema-dump.sql";
          $this->_verbose && self::_showLine(["restoring database using schema v{$schemaCfg->version} using: $dumpSql"]);
@@ -417,9 +486,20 @@ EOT;
             self::_showErrLine([self::ME.": (ERROR) schema dump did not resolve to readable file: $dumpSql"]);
             return $this->_exitStatus = 1;
          }
-         $pdo->exec(file_get_contents($dumpSql));
-         $pdo->prepare("INSERT INTO `{$schemaCfg->table}` SET version=:version")->execute([':version'=>$version]);
+         try {
+            $pdo->exec(file_get_contents($dumpSql));
+         } catch (\PDOException $e) {
+            self::_showErrLine([self::ME.": (ERROR) Database error: ".$e->getMessage()]);
+            return $this->_exitStatus = 1;
+         }
          $version=$schemaCfg->version;
+         $pdo->prepare("
+         INSERT INTO
+            `{$schemaCfg->table}`
+         SET
+            ns=:ns,
+            version=:version
+         ")->execute([':version'=>$version,':ns'=>$schemaCfg->ns]);
          unset($dumpSql);
       } else {
          for($newVersion = floatval($version)+0.01;$newVersion<($schemaCfg->version+0.01);$newVersion+=0.01) {
@@ -430,6 +510,14 @@ EOT;
                return $this->_exitStatus = 1;
             }
             $pdo->exec(file_get_contents($updateSql));
+            $pdo->prepare("
+            INSERT INTO
+               `{$schemaCfg->table}`
+            SET
+               ns=:ns,
+               version=:version
+            ")->execute([':version'=>$newVersion,':ns'=>$schemaCfg->ns]);
+            sleep(1);
             $version=$newVersion;
          }
          unset($newVersion);

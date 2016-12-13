@@ -1,6 +1,12 @@
 .*
 !/.gitignore
+*.sql
 /vendor
 composer.lock
-/app/data/mysql/backup
-/app/config/shrturl/mysql.php
+!/app/data/mysql/schema-sql/*/schema-dump.sql
+!/app/data/mysql/schema-sql/*/schema-updates.sql
+/app/config/shrturl/*.php
+/app/config/shrturl/**/*.php
+!/app/config/shrturl/*-sample.php
+!/app/config/shrturl/**/*-sample.php
+!/app/config/shrturl/service.php
