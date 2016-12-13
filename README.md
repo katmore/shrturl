@@ -107,4 +107,4 @@ characters used in most URL shorteners.
 				
 ## Legal ##
    * License: "2-clause Simplified BSD License", see [LICENSE](LICENSE)
-   * Copyright (c) 2012-2014 Doug Bird, All Rights Reserved.
+   * Copyright (c) 2012-2014 Paul D. Bird II, All Rights Reserved.
