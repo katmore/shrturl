@@ -106,5 +106,14 @@ characters used in most URL shorteners.
    > that is set in your shrt-config-example.php
 				
 ## Legal ##
-   * License: "2-clause Simplified BSD License", see [LICENSE](LICENSE)
-   * Copyright (c) 2012-2017 Paul D. Bird II, All Rights Reserved.
+### Copyright
+Flat webapp - https://github.com/katmore/flat-webapp
+
+Copyright (c) 2012-2017 Doug Bird. All Rights Reserved.
+
+
+### License
+"shrturl" is copyrighted free software.
+
+You can redistribute it and/or modify it under either the terms and conditions of the
+"[The MIT License (MIT)](https://github.com/katmore/shrturl/blob/master/LICENSE)"; or the terms and conditions of the "[GPL v3 License](https://github.com/katmore/shrturl/blob/master/GPLv3)".
